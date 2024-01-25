@@ -6,19 +6,19 @@ let assignments = [...assignmentsFromFile];
 const assignmentRouter = Router();
 
 // start coding here
-assignmentRouter.get("/assignments", (req, res) => {
+assignmentRouter.get("/", (req, res) => {
   return res.json({
     data: assignments,
   });
 });
 
-assignmentRouter.get("/assignments/:id", (req, res) => {
-  const assignmentId = +req.params.id;
+assignmentRouter.get("/:id", (req, res) => {
+  const assignmentId = Number(req.params.id);
   const hasFound = assignments.find((assign) => assign.id === assignmentId);
 
   if (!hasFound) {
     return res.status(404).json({
-      messsage: `Assignment ${assignmentId} not found`,
+      message: `Assignment ${assignmentId} not found`,
     });
   }
 
